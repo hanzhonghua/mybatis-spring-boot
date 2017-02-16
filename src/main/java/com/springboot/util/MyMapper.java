@@ -1,4 +1,4 @@
-package com.springboot.mapper;
+package com.springboot.util;
 
 public interface MyMapper{
 
