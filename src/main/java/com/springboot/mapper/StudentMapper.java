@@ -12,4 +12,5 @@ public interface StudentMapper extends MyMapper {
 	String getNameById(int id);
 	void addStudent(Student s);
 	List<Student> list();
+	List<Student> someList(Student s);
 }

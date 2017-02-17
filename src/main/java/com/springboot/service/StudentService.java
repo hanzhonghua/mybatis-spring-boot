@@ -14,4 +14,6 @@ public interface StudentService {
 
 	List<Student> list();
 
+	List<Student> list(Student s);
+
 }

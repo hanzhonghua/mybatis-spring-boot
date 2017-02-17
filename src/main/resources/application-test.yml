@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/test
+    username: root
+    password: root
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+  mvc:
+      view:
+          prefix: /templates/
+          suffix: .ftl
+  freemarker:
+    cache: false
+    request-context-attribute: request      
+      
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*Mapper.xml
+  type-aliases-package: com.springboot.pojo
+  
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+  
+#使用Springboot默认日志logback，假如同时设置了以及也有logback.xml此时优先使用配置
+logging:
+  level:
+    root: INFO
+  file: f:/demo.log
+  
+  
+   

@@ -1,13 +1,16 @@
 package com.springboot.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.springboot.pojo.Student;
 import com.springboot.service.StudentService;
 
@@ -24,7 +27,7 @@ public class StudentController extends BaseController {
 		PageHelper.startPage(1, 2);
 		return studentService.likeName(name);
 	}
-
+	
 	@RequestMapping(value = "/getById")
 	@ResponseBody
 	public Student getById(int id) {
@@ -49,5 +52,17 @@ public class StudentController extends BaseController {
 		PageHelper.startPage(1, 2);
 		List<Student> list = studentService.list();
 		return list;
+	}
+	
+	@RequestMapping("/pageList")
+	public ModelAndView list(Student s){
+		ModelAndView mv = new ModelAndView("index");
+		List<Student> studentList = studentService.list(s);
+		LOGGER.info("查询学生列表");
+		mv.addObject("pageInfo", new PageInfo<Student>(studentList));
+		mv.addObject("queryParam", s);
+		mv.addObject("page", s.getPage());
+		mv.addObject("rows", s.getRows());
+		return mv;
 	}
 }

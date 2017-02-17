@@ -38,6 +38,20 @@
         SELECT *
         FROM STUDENT
     </select>
+    
+    <select id="someList" resultMap="stuMap" parameterType="com.springboot.pojo.Student">
+        SELECT *
+        FROM STUDENT
+        <where>
+        <if test="age != null and age != '' ">
+        	age = #{age}
+        </if>
+        <if test="name != null and name != '' ">
+        	and name 
+        	like CONCAT('%',#{name},'%')
+        </if>
+        </where>
+    </select>
 
 
 </mapper> 

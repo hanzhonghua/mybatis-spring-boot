@@ -1,0 +1,22 @@
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://192.168.28.52:3306/
+    username: llmj
+    password: llmj
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+   
+      
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*Mapper.xml
+  type-aliases-package: com.springboot.pojo
+  
+#使用Springboot默认日志logback
+logging:
+  level:
+    root: INFO
+  file: f:/demo/demo.log
+  
+   

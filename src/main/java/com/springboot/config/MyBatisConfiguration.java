@@ -15,9 +15,9 @@ import com.github.pagehelper.PageHelper;
 @Configuration
 public class MyBatisConfiguration {
    
-    @Bean
+    @Bean  
     public PageHelper pageHelper() {
-       System.out.println("MyBatisConfiguration.pageHelper()");
+        System.out.println("MyBatisConfiguration.pageHelper()");
         PageHelper pageHelper = new PageHelper();
         Properties p = new Properties();
         p.setProperty("offsetAsPageNum", "true");
