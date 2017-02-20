@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @SpringBootApplication
 //扫描mapper接口，父级MyMapper不能和普通mapper在同一个包下
 @MapperScan(basePackages = "com.springboot.mapper"/*, markerInterface = MyMapper.class*/)
+//扫描自定义的servlet和filter
+@ServletComponentScan
 /**
  * 实现接口TransactionManagementConfigurer，多事务管理器中在实现方法中指定默认事务管理器
  * 假如在项目中有多个PlatformTransactionManager实现类而有没有实现该接口，在@Transactional注解
