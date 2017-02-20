@@ -8,8 +8,7 @@
     <h1>Error Handler</h1>
     <table>
     	<td>
-		    <td></td>
-		    <td></td>
+		    <td>${error}</td>
 	    </tr>
 	</table>
 </body>

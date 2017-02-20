@@ -1,25 +1,20 @@
 package com.springboot;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
-
-import com.springboot.util.MyMapper;
-
+import org.springframework.web.bind.annotation.RequestMapping;
+@Controller
 //启动事务，等同于<tx:annotation-driven>，然后在每个service加@Transactional
 @EnableTransactionManagement 
+//让Springboot为程序进行必要的配置
 @SpringBootApplication
 //扫描mapper接口，父级MyMapper不能和普通mapper在同一个包下
-@MapperScan(basePackages = "com.springboot.mapper", markerInterface = MyMapper.class)
+@MapperScan(basePackages = "com.springboot.mapper"/*, markerInterface = MyMapper.class*/)
 /**
  * 实现接口TransactionManagementConfigurer，多事务管理器中在实现方法中指定默认事务管理器
  * 假如在项目中有多个PlatformTransactionManager实现类而有没有实现该接口，在@Transactional注解
@@ -56,13 +51,19 @@ public class MybatisSpringBootApplication/* implements TransactionManagementConf
 		return new JpaTransactionManager(emf);
 	}*/
 
-	public static void main(String[] args) {
-		SpringApplication.run(MybatisSpringBootApplication.class, args);
-	}
-
 	//实现TransactionManagementConfigurer方法，表示多个事务管理器中使用哪个作为默认的
 	/*@Override
 	public PlatformTransactionManager annotationDrivenTransactionManager() {
 		return defaultManager;
 	}*/
+	
+	public static void main(String[] args) {
+		SpringApplication.run(MybatisSpringBootApplication.class, args);
+	}
+	
+	//访问8080端口时，重定向到pageList学生列表
+	@RequestMapping("/")
+	String home(HttpServletRequest request){
+		return "redirect:pageList";
+	}
 }

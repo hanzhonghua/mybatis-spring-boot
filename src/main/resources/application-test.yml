@@ -1,3 +1,7 @@
+server:
+  port: 9090
+  context-path: #/student
+
 spring:
   datasource:
     name: test
@@ -6,6 +10,7 @@ spring:
     password: root
     # 使用druid数据源
     type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
   mvc:
       view:
           prefix: /templates/
